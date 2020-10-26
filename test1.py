@@ -1,5 +1,5 @@
 import rospy
-from geometry_msg.msg import Twist
+from geometry_msgs.msg import Twist
 
 
 rospy.init_node('cmd_node')
