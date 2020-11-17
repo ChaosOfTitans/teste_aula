@@ -1,16 +1,23 @@
 import rospy
-from geometry_msgs.msg import Twist
+from std_msgs.msg import String
 
 
-rospy.init_node('cmd_node')
+rospy.init_node('Atividade_4')
+
+num = 'matricula = 2017001704'
+
+def num_callBack(msg):
+    global num
+    num = msg.data
 
 def timerCallBack(event):
-    msg = Twist()
-    msg.linear.x = 1.0
+    msg = String()
+    msg.data = '2017001704'
     pub.publish(msg)
     
-pub = rospy.Publisher('/cmd_vel', Twist, queue_size = 1)
+pub = rospy.Publisher('/matricula', String, queue_size = 1)
 timer = rospy.Timer(rospy.Duration(0.05), timerCallBack)
+sub = rospy.Subscriber('/soma', String, num_callBack)
 
 rospy.spin()
     
